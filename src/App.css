@@ -1,32 +1,30 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+  background-image: url("./images/Boston_Night.jpg");
+  background-position: 0px -120px;
+}
+.App-header {
+}
+.App-header h1 {
   color: white;
+  font-size: 40pt;
+  text-shadow: 5px 5px black;
 }
-
-.App-link {
-  color: #61dafb;
+.mapContainer {
+  background-color: black;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  flex: 1;
+  margin-bottom: none;
+  padding: none;
+  height: 100vh;
+}
+footer {
+  flex: 1;
+  margin-top: 100px;
+  color: white;
+  background-color: black;
+  width: 100%;
 }

@@ -1,33 +1,40 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper } from "google-maps-react";
+import { render } from "react-dom";
 
-const mapStyles = {
-  marginLeft: "auto",
-  marginRight: "auto",
-  marginBottom: "none",
-  marginTop: "14%",
-  width: "90%",
-  height: "50%"
-};
+class MapContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.onScriptLoad = this.onScriptLoad.bind(this);
+  }
 
-export class MapContainer extends Component {
-  render() {
-    return (
-      <div className="mapContainer">
-        <Map
-          google={this.props.google}
-          zoom={14}
-          style={mapStyles}
-          initialCenter={{
-            lat: 42.3601,
-            lng: -71.0589
-          }}
-        />
-      </div>
+  onScriptLoad() {
+    const map = new window.google.maps.Map(
+      document.getElementById(this.props.id),
+      this.props.options
     );
+    this.props.onMapLoad(map);
+  }
+
+  componentDidMount() {
+    if (!window.google) {
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = `https://maps.google.com/maps/api/js?key=AIzaSyDTVczXE4vhnwXkY17_Db96U_dlMQ7MnKU`;
+      var x = document.getElementsByTagName("script")[0];
+      x.parentNode.insertBefore(s, x);
+      // Below is important.
+      //We cannot access google.maps until it's finished loading
+      s.addEventListener("load", e => {
+        this.onScriptLoad();
+      });
+    } else {
+      this.onScriptLoad();
+    }
+  }
+
+  render() {
+    return <div id={this.props.id} />;
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyDTVczXE4vhnwXkY17_Db96U_dlMQ7MnKU"
-})(MapContainer);
+export default MapContainer;

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import { GoogleMapReact, Map } from "google-map-react";
 
 import MapContainer from "./components/MapContainer";
 import FooterContainer from "./components/FooterContainer";
@@ -14,10 +12,24 @@ class App extends Component {
           <img
             src={require("./images/boston-lights-logo.png")}
             style={{ width: "200px" }}
+            alt="Boston Lights"
           />
         </header>
         <body>
-          <MapContainer />
+          <MapContainer
+            id="map"
+            options={{
+              center: { lat: 42.3601, lng: -71.0589 },
+              zoom: 14
+            }}
+            onMapLoad={map => {
+              var marker = new window.google.maps.Marker({
+                position: { lat: 42.3601, lng: -71.0589 },
+                map: map,
+                title: "Hello Boston!"
+              });
+            }}
+          />
         </body>
         <footer>
           <FooterContainer />

@@ -12,15 +12,19 @@
   font-size: 40pt;
   text-shadow: 5px 5px black;
 }
-.mapContainer {
-  background-color: black;
-}
 body {
   flex: 1;
   margin-bottom: none;
   padding: none;
   height: 100vh;
 }
+
+#map {
+  width: 90%;
+  height: 90%;
+  margin: auto;
+}
+
 footer {
   flex: 1;
   margin-top: 100px;
